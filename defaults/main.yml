@@ -1,0 +1,73 @@
+---
+etcd_version: "3.5.14"
+
+etcd_user: "etcd"
+etcd_group: "etcd"
+
+# Human-readable name for this member.
+etcd_member_name: "default"
+
+# Path to the data directory.
+etcd_data_dir: "/var/lib/etcd/data"
+# Path to the dedicated wal directory.
+etcd_wal_dir: "/var/lib/etcd/wal"
+
+# Number of committed transactions to trigger a snapshot to disk.
+etcd_snapshot_trigger_count: 10000
+# Maximum number of snapshot files to retain (0 is unlimited).
+etcd_snapshot_max_count: 5
+
+# Maximum number of wal files to retain (0 is unlimited).
+etcd_wal_max_count: 5
+
+# Time (in milliseconds) of a heartbeat interval.
+etcd_heartbeat_interval: 100
+
+# Time (in milliseconds) for an election to timeout.
+etcd_election_timeout: 1000
+
+# List of URLs to listen on for peer traffic.
+etcd_peer_listen_urls: ["http://localhost:2380"]
+# List of URLs to listen on for client traffic.
+etcd_client_listen_urls: ["http://localhost:2379"]
+
+# Initial cluster token for the etcd cluster during bootstrap.
+etcd_cluster_name: "etcd-cluster"
+
+# White list of origins for CORS (cross-origin resource sharing).
+etcd_cors_origins: []
+
+# Minimum TLS version supported by etcd.
+etcd_tls_min_version: "TLS1.2"
+# Maximum TLS version supported by etcd.
+etcd_tls_max_version: "TLS1.3"
+
+# Path to the client server TLS cert file.
+#etcd_tls_client_cert_path: ""
+# Path to the client server TLS key file.
+#etcd_tls_client_key_path: ""
+
+# Path to the peer server TLS cert file.
+#etcd_tls_peer_cert_path: ""
+# Path to the peer server TLS key file.
+#etcd_tls_peer_key_path: ""
+# Path to the peer server TLS trusted CA file.
+#etcd_tls_peer_ca_path: ""
+
+# Interpret as one of:
+# - 'periodic' for duration based retention, defaulting to hours if no time unit is provided (e.g. '5m').
+# - 'revision' for revision number based retention.
+etcd_auto_compaction_mode: "periodic"
+# Auto compaction retention length. 0 means disable auto compaction.
+etcd_auto_compaction_retention: 1
+
+# Enable runtime profiling data via HTTP server
+etcd_pprof_enabled: false
+# Set level of detail for exported metrics, specify 'extensive' to include server side grpc histogram metrics.
+etcd_metrics_level: "basic"
+# List of URLs to listen on for the metrics and health endpoints.
+etcd_metrics_listen_urls: []
+
+# Configures log level. Only supports 'debug', 'info', 'warn', 'error', 'panic', or 'fatal'.
+etcd_log_level: "info"
+etcd_log_rotation_enabled: true

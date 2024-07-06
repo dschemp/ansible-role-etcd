@@ -1,0 +1,13 @@
+---
+- name: "Set platform/version specific variables."
+  ansible.builtin.include_vars: "{{ __etcd_vars_file }}"
+  loop: "{{ __etcd_vars_file_list }}"
+  vars:
+    __etcd_vars_file_list:
+      - "OS-{{ ansible_facts['os_family'] }}.yml"
+      - "OS-{{ ansible_facts['os_family'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+      - "D-{{ ansible_facts['distribution'] }}.yml"
+      - "D-{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+      - "D-{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_version'] }}.yml"
+    __etcd_vars_file: "{{ role_path }}/vars/{{ item }}"
+  when: "__etcd_vars_file is file"
